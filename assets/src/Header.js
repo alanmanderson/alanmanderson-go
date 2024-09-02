@@ -2,7 +2,7 @@ function Header() {
 const linkStyle = {padding: 30};
 
     return (
-        <div>
+        <div className="App-header">
           <div style={{ padding: 10}}>
             <a href="https://github.com/alanmanderson" style={ linkStyle }>Github</a>
             <a href="https://www.credly.com/users/alanmanderson" style={ linkStyle }>Credly</a>

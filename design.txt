@@ -1,0 +1,29 @@
+endpoints:
+/center
+Holds a websocket connection to update the state of the game.
+
+State:
+North: player_id
+East: player_id
+South: player_id
+West: player_id
+gamePhase: DEAL, BID, TRICKS, SCORING
+Trick: {North: card_id, East: card_id, South: card_id, West: card_id, Lead: North, Winner: East, id: 123abc}
+CurrentTrick: trick_id
+TricksTaken: {North: [trick_id, ...], East: [trick_id, ...], South: [trick_id, ...], West: [trick_id, ...]}
+Score: NorthSouth: {score:324, bags: 4}, EastWest: {score:251, bags:1
+
+Messages:
+S = Server
+CP = Client Player
+CC = Client Center
+S->CC
+StateUpdate: All state OR specific field
+
+S->CP
+Deal: List of cards
+Bid: Bid
+
+CP -> S
+Bid: bid
+

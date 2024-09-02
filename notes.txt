@@ -1,0 +1,43 @@
+Generating a go.mod file:
+* https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs
+
+
+WORKING way to build go library for linux docker image:
+* GOOS=linux GOARCH=amd64 go build -o server -a
+
+Build the docker image:
+* docker build -t alanmanderson-go/hello-world:latest .
+
+Run the container:
+* docker run -p 8080:8080 alanmanderson-go/hello-world:latest
+
+Deploy to GCP:
+* gcloud run deploy hello-world \
+  --image <your-project-id>/hello-world:latest \
+  --platform managed \
+  --region <desired-region>  # Choose a region for deployment
+* https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-go-service
+
+
+Initialize google cloud sdk:
+* Path to sdk: ~/.google-cloud-sdk/bin/gcloud --> path is set in .zshrc
+* gcloud init
+
+Configure Docker with GCR:
+* gcloud auth configure-docker
+
+Tag the project for GCR:
+* docker tag alanmanderson-go/hello-world gcr.io/alanmanderson-go/hello-world:latest
+
+Push to Google Container Repository
+* docker push gcr.io/alanmanderson-go/hello-world:latest
+
+Run the image in the cloud:
+* gcloud run deploy hello-world --image alanmanderson-go/hello-world:latest --platform managed --region us-central1-b
+* gcloud run deploy
+
+Update Cloud Run app with custom domain:
+* https://cloud.google.com/run/docs/integrate/custom-domain-load-balancer
+
+
+

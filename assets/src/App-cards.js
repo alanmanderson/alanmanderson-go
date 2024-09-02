@@ -71,11 +71,49 @@ function App() {
     }
   }, [ user ] );
 
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
+  };
+
+  const cards = [
+    '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS'
+  ];
+  const hand = cards.map(card =>
+    <Card cardId={card} />
+  );
+
   return (
     <div className="App">
+      //<Header />
       <header className="App-header">
+        <div>
+          {isLoading && <p>Authenticating...</p>}
+          {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+        </div>
+        <div>
+          {profile ? (
+            <div>
+              <div>Welcome {profile.name}!</div>
+              <img src={profile.picture} alt="profile"/><br/>
+              <button onClick={logOut}>Log out</button>
+            </div>
+          ) : (
+            <button onClick={() => login()}>Sign in with Google</button>
+          )}
+        </div>
       </header>
-      <Home />
+      //<Home />
+      <div>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Welcome to alanmanderson.com!
+        </p>
+        <button onClick={createGame}>Create Game</button>
+      <Request />
+      </div>
+
+      { hand }
     </div>
   );
 }
